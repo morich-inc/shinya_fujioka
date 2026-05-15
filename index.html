@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>藤岡慎也 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>藤岡慎也 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社タックスナップ(旧：TxTo(テキスト))</a>
+  <a href="#k2">2. 株式会社KAEN(カエン)</a>
+  <a href="#k3">3. Sushi AI株式会社</a>
+  <a href="#k4">4. 株式会社キノシタ林業</a>
+  <a href="#k5">5. 株式会社東京PM不動産(トウキョウピーエムフドウサン)</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">COO候補</span><span class="badge badge-blue">未上場/IPO準備中</span></div>
+  <div class="co-name">株式会社タックスナップ(旧：TxTo(テキスト))</div>
+  <div class="co-url"><a href="https://www.txto.co.jp/" target="_blank">https://www.txto.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都渋谷区代々木1-36-4全理連ビル</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>★IPO準備中(4年後の上場を目指しており、今年度中には新たに約10億円規模の大型資金調達を予定)</li><li>★社長リレーション</li><li>設立から約2年半、リリースから2年弱で、直近の年間売上は8.5倍という驚異的な成長</li><li>現在の年間売上(ARR)は約3億円に達している</li><li>有料ユーザーの約82%が年払いを利用しており、非常に安定したキャッシュフロー</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">個人事業主やフリーランスをメインターゲットとした会計・確定申告アプリ「タックスナップ」を提供しています。直感的なスワイプ操作で仕訳ができ、税理士監修のAIが複雑な勘定科目を自動判定するため、専門知識がなくてもスムーズに利用できるサービスです。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>個人事業主やフリーランスをメインターゲットとした会計・確定申告アプリ「タックスナップ」を提供しています。</p><p>直感的なスワイプ操作で仕訳ができ、税理士監修のAIが複雑な勘定科目を自動判定するため、専門知識がなくてもスムーズに利用できるサービスです。また、副業をされている方や、ふるさと納税・医療費控除を利用するサラリーマンの方々にも無料で提供しています。将来的には、単なる確定申告ツールに留まらず、仕事紹介や収支管理など、個人事業主の活動全体を支えるインフラ的なサービスを目指しています。</p><p>設立から約2年半、リリースから2年弱で、直近の年間売上は8.5倍という驚異的な成長を遂げ、現在の年間売上(ARR)は約3億円に達しています。確定申告という明確なニーズがあるため、広告による顧客獲得パフォーマンスにおいても非常に高い効果を上げています。</p><p>また、4年後の上場を目指しており、今後上場準備を本格化させる予定です。今年度中には新たに約10億円規模の大型資金調達を予定しており、すでに複数のVCからリードオファーを受けています。現在はシリーズAフェーズとして、大規模なテレビCMなど広告宣伝費にも予算を投じ、アクセルを本格的に踏み込むフェーズとなっています。</p><p><strong>代表取締役　田中雄太氏</strong><br>1995年生まれ。2018年に株式会社じげんに新卒入社し、不動産事業部において広告の法人営業を担当。入社1年目に全社初の営業成績を残し全社表彰を受彰。2020年に株式会社サムライインキュベートへ転職。主にイスラエルのスタートアップに対して投資及び事業支援と、日本市場参入支援のアドバイザリー事業の立上げを推進。約20社・合計$10 Million以上の投資実行に従事。<br>フリーランスとして独立後、住宅ローンの審査に落ちたこと等をきっかけに、2022年11月に(株)TxTo(現：株式会社タックスナップ)を創業。</p><p>&quot;ひとりひとりの可能性を最大化する&quot; をミッションに掲げ、フリーランスの最適な与信モデル創造を目指しています。代表の田中氏の課題意識から、現行の与信モデルが合わない約800万人のフリーランス・個人事業主に対し、まず&quot;個人の確定申告の常識を変えるプロダクト&quot;Taxnapを展開。カード連携やアプリ完結で、年間2,300万人以上が悩む確定申告の煩雑さや高額な税理士費用を解消します。</p><p>確定申告で得られる個人のリッチな財務データを基に、今後は請求・資金管理、AIを活用した案件紹介や相続支援など、個人事業主のインフラ構築を目指しています。従来の与信モデルでは評価されないフリーランスの信用問題を解決し、彼らの可能性を最大化する社会貢献性の高い事業です。</p><p>確定申告時期には圧倒的なユーザーからの支持を得ており、高いPMFを示しています。<br>有料ユーザーの約82%が年払いを利用しており、利用後1〜2ヶ月で初期費用を回収できるため、非常に安定したキャッシュフローを確立しています。<br>年間2,300万人が対象となる確定申告という巨大市場で、個人の財務データを活用し、与信問題解決という大きな社会課題に取り組んでいます。確定申告だけでなく、将来的には個人のインフラとなるプラットフォームを目指しており、大きな事業拡大の可能性があります！</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 COO候補</div>
+          <div class="job-preview">アライアンス戦略の設計から組織構築まで統括する最高執行責任者候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景：</strong><br>個人事業主向け確定申告アプリ「タックスナップ」は、スワイプ操作だけで確定申告が完結する革新的なUXにより、急激な成長を遂げています。</p><p>現在、CEO田中のトップ営業により、フリーランスプラットフォーマーなど中心に約60社とのアライアンス提携を実現しました。<br>しかし、これはまだ「種まき」の段階に過ぎません。<br>1社1社との連携を深め、確実に収益を生むチャネルとして確立し、さらにエンドユーザーである個人事業主自身をパートナー化するBtoBtoCモデルを構築するには、CEOの片手間ではなく、フルコミットできる専任の「執行責任者」が必要です。<br>戦略を描くだけでなく、現場に入り込んで泥臭く実行し、事業を爆発的な成長フェーズへと導けるCOO(最高執行責任者)候補を募集します。</p><p><strong>■役割想定</strong><br>COO(最高執行責任者)候補として、アライアンス戦略の設計をお任せし、<br>既存パートナーとの関係深化、新規大型チャネルの開拓、そしてこれらを属人的な動きではなく「再現性のある仕組み」へと落とし込む組織づくりをお任せします。</p><p><strong>■詳細</strong><br>1.既存アライアンスの深耕と収益化<br>    - 地方銀行、建設協力会、商工会議所等のキーマンとの関係強化<br>    - 提携先ごとの導入スキーム構築と現場への浸透施策(勉強会の実施、同行営業などの泥臭い活動含む)</p><p>2.BtoBtoCパートナーモデルの構築<br>    - ユーザーである個人事業主が、タックスナップの販売パートナーとして機能する仕組み(代理店網)の設計<br>    - インセンティブ設計、品質管理、不正防止のルール策定</p><p>3. 新規チャネル・エンタープライズ開拓<br>    - 国、自治体、大手金融機関など、社会的信用の高いステークホルダーへのトップセールス</p><p>4. 事業執行・組織マネジメント(Executor)<br>    - アライアンス部門のKPI設計、予実管理、ボトルネックの特定と解消<br>    - CEOのアイデアや人脈を、誰でも実行可能な「型(Playbook)」に落とし込む仕組み化</p><p><strong>■ご入社後</strong><br>まずはCEO田中と共に既存の主要パートナーへの訪問に同行し、現在の文脈や課題感を把握していただきます。<br>その後、優先順位の高いアライアンス先から順次主担当として引き継ぎ、独自の施策で成果(ユーザー獲得数・収益)を出していただくことを期待します。<br>将来的には事業全体を統括するCOOとしての経営参画を想定しています。</p><p><strong>必須要件：</strong></p><ul><li><span class='tag tag-must'>MUST</span> 経営課題の自律的発見・解決(オーナーシップ)　全社視点で課題を見つけ、CEOに提案しながら解決まで推進できる方(領域横断で動ける)</li><li><span class='tag tag-must'>MUST</span> 仕組み化志向　属人成果ではなく「売れ続ける仕組み／組織の勝ちパターン」を構築できる方</li><li><span class='tag tag-must'>MUST</span> 0→1の実行力(スタートアップ経験)　不確実・リソース不足の中で、自ら前線に立ち意思決定し成果創出した経験</li><li><span class='tag tag-must'>MUST</span> スピード×COOレンジ　アライアンスに留まらず、PL・組織・プロダクトまで踏み込める方　MVP思考と高速な構造分解力</li></ul><p><strong>歓迎要件：</strong></p><ul><li><span class='tag tag-want'>WANT</span> レガシー業界(JA／信金・地銀／商工会等)の経験</li><li><span class='tag tag-want'>WANT</span> BtoBtoC／代理店モデルの構築経験(エコシステム設計)</li><li><span class='tag tag-want'>WANT</span> 金融・決済／フィンテック／M&Aの基礎理解</li><li><span class='tag tag-want'>WANT</span> 採用・組織構築経験(9→30名フェーズ)</li><li><span class='tag tag-want'>WANT</span> 0→1、1→10の急成長フェーズでの意思決定経験(CxO／事業責任者)</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.txto.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">CFO候補</span><span class="badge badge-blue">未上場/N-4以前</span></div>
+  <div class="co-name">株式会社KAEN(カエン)</div>
+  <div class="co-url"><a href="https://kaen-inc.com/" target="_blank">https://kaen-inc.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都渋谷区円山町19-1 渋谷プライムプラザ 2階-A</td></tr><tr><th>設立</th><td>2019年</td></tr><tr><th>上場区分</th><td>未上場/N-4以前</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>前年対比370％成長と、現在は第二創業期として組織成長とビジネスを加速させるフェーズ</li><li>2029年、創業10期でのIPOを目指している</li><li>国内セールステックのリーディングカンパニーであるSansan社では、ターンを通じて月間1000商談を生み出している</li><li>現在、約450社の販売代理店が登録し月間3000件以上の商談が生まれている</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2019年設立。「時代を変える産業に火をつける」をミッションに掲げ、スタートアップと代理店をマッチングし、スタートアップを販売戦略の側面からサポートする事業をおこなっています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2019年設立。&quot;時代を変える産業に火をつける&quot;をミッションに掲げ、スタートアップと代理店をマッチングし、スタートアップを販売戦略の側面からサポートする事業をおこなっています。</p><p>運営する完全成果報酬型 商談創出プラットフォーム「TAAAN(ターン)」は、メーカー企業と営業代行・代理店企業をマッチングし、商談管理・メッセージ・請求管理まで、オールインワンで行える代理店向けセールスインフラサービスです。</p><p>クライアントは主にSaaSベンダーです。販売代理店側の顧客データや実績を集めているので、SaaSベンダーが本当にリーチしたい顧客にセグメント分けをした上で、効果的なリードにアプローチできます。</p><p>大きな特徴は、単なるリード獲得ではなく、従業員規模、役職、部署、経営課題などを具体的に定義した上で質の高い商談を作れる点です。これは、販売代理店の持つオフラインの顧客データ(業種、業態、規模など)を定量的に活用し、メーカーの要望と代理店のリーチ可能な顧客を最適な形でマッチングさせることで実現しています。</p><p>実績として、国内セールステックのリーディングカンパニーであるSansan社では、ターンを通じて月間1000商談を生み出しています。現在、約450社の販売代理店が登録し月間3000件以上の商談が生まれています。</p><p>前年対比370％成長と、現在は第二創業期として組織成長とビジネスを加速させるフェーズにあります。<br>&quot;世の中を変えるサービスを最終的に広めたのは僕らのプラットフォームだった&quot;という状態の実現を目指し、2029年、創業10期でのIPOを目指しています。</p><p><strong>CEO 川田 勇輝氏</strong><br>1988年生まれ、栃木県宇都宮出身。新卒で株式会社エスキュービズム入社。大手小売、飲食企業へEC、iPadなどコンサル営業やプロダクト開発を経験。途中、社内ベンチャーとして光通信型営業会社の立ち上げに参画。2年で数億規模の売上まで立ち上げる。その後、日本美食株式会社にて創業メンバーとしてインバウンド×フィンテック領域の事業を立ち上げを経験。2年で2万店舗の開拓やシリーズB調達まで経験。<br>Wakrak株式会社では再度立ち上げ時に参画。資金調達、営業設計、代理店戦略などの事業構築・運営を行い、2年で10万ユーザー、4000店舗獲得するサービスへ成長させる。<br>2019年12月 株式会社KAENを創業。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 CFO候補</div>
+          <div class="job-preview">第2創成期として拡大する組織成長を共に担うCFO候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>第2創成期として拡大しており、従業員は12名程の組織にまで成長してきました。<br>組織成長を共に担って頂けるCFO候補を求めています。</p><p>&quot;守りのCFO&quot;としてバックオフィス体制を強化していただきたいと考えています。<br>管理部門業務全般、また、IPOに向けた経営管理体制の整備や構築をお任せいたします。</p><p><strong>◆組織</strong><br>ビジネス 7名、エンジニア 4名、バックオフィス 1名の<br>リファラル採用を中心に集まったメンバーです。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://kaen-inc.com/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">管理担当役員(CFO候補)</span><span class="badge badge-blue">未上場/N-2</span></div>
+  <div class="co-name">Sushi AI株式会社</div>
+  <div class="co-url"><a href="https://sushiai.jp" target="_blank">https://sushiai.jp</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都港区浜松町２丁目２番１５号浜松町ダイヤビル２階</td></tr><tr><th>設立</th><td>2024年11月</td></tr><tr><th>上場区分</th><td>未上場/N-2</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>他社には真似できない圧倒的なポジショニングと事業基盤(防衛省の中枢DXプロジェクトを牽引するという、大手SIerや有力AIベンチャーですら入り込めない独自のポジション)</li><li>超ハイスピードなIPOに向けた明確なロードマップ(2027年春頃のIPO、2026年11月にはN-1期入りを予定)</li><li>天才的なエンジニア陣と百戦錬磨の経営トップとの共闘</li><li>すでに今月で黒字化を達成し、年末には月商2億円ペースを見込む</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2024年11月に創業したばかりの若い企業ながら、2027年春頃のIPO(2026年11月にはN-1期入りを予定)を目指すなど、圧倒的なスピードで急速な事業拡大を実現しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2024年11月に創業したばかりの若い企業ながら、2027年春頃のIPO(2026年11月にはN-1期入りを予定)を目指すなど、圧倒的なスピードで急速な事業拡大を実現しています。</p><p>現在の主要事業であるAIコンサルティングにおいては、民間企業(大手コンサルティングファームからの豊富な案件流入など)だけでなく、防衛省のど真ん中のDXプロジェクトをトップとして牽引するなど、他のベンチャーが入り込めない国家の中枢領域にまで深く入り込んでいます。すでに今月で黒字化を達成し、年末には月商2億円ペースを見込むなど、盤石な事業・財務基盤を構築しつつあります。</p><p>また、東京大学の学生をはじめとする若手AI起業家を支援し、M&Aやジョイントベンチャーを通じて成長を加速させるエコシステムも展開しています。</p><p>Sushi AIの強みは、東大発AIエンジニアの水野氏が持つ最先端の技術力と、上場経験を持つ井上氏の豊富なビジネス経験・圧倒的な人脈(ロビー力)の掛け算にあります。</p><p>競合他社と技術的な差がつきにくいAI領域において、同社は&quot;誰もいないポジションを先取りする&quot;確固たる戦略を持っています。</p><p>また、単なるアプリケーション層のAI開発に留まらず、データベースレイヤーからのAIレディな環境構築(AI駆動開発)にも強みを持ち、既存の巨大システムをAI化する高度なノウハウを有している点も大きな差別化要因です。<br> 単なるAI開発会社ではなく、&quot;自国の未来に希望を創る&quot;というミッションのもと、AI特化型インキュベーション事業を展開し、日本発のイノベーションを世界へ発信していきます。 AIの力で日本の再興を実現するため、志を同じくする仲間と共に、意味のある事業創造に取り組んでいます。</p><p><strong>【注目代表者2名の経歴】</strong></p><p><strong>代表取締役社長：水野太賀氏</strong> 東京大学医学部出身のAIスペシャリスト。2023年にMedurance社代表取締役CEOを務め、AI、LLM、インフラなど幅広い技術領域に精通。自律型プロジェクトを推進する高度AIスタートアップを率い、最先端技術から大手開発委託まで手掛ける。東大の優秀なエンジニアネットワークを持ち、高品質な技術基盤を構築。</p><p><strong>代表取締役会長：井上裕基氏</strong> 立命館大学理工学部出身の連続起業家。日本オラクル入社後、ERPコンサルタントとしてキャリアをスタート。アクセンチュア、サイバーエージェントを経て、2006年にアジアビジネスLLC設立。2007年にWaqoo社を創業し代表取締役に就任、2021年に東証マザーズ市場にIPOを達成。豊富な事業経験と人脈を活かし、ビジネス面での推進力を提供。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 管理担当役員(CFO候補)</div>
+          <div class="job-preview">IPOを見据え管理部門の立ち上げと強化を担う管理担当役員</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>IPOを見据え、管理部門の立ち上げと強化を担う管理担当役員のポジションです。<br>上場経験豊富なアドバイザーも参画予定。会計・財務を中心に監査法人や証券会社と連携し、上場準備の実務を現場感を持って推進できる方を求めています。</p><p>管理部門全体の構築・統括、経理・財務・内部統制等のコーポレート機能の整備、IPO準備プロセスの推進</p><p>経営層と近い距離で、スピード感を持って管理体制を整備し、会社の成長を支える中軸としてご活躍いただきます。上場経験の有無は問いません。実務をやり抜き、周囲と協調しながら前に進められる方を歓迎します。</p><p><strong>応募資格：</strong></p><ul><li><span class='tag tag-must'>MUST</span> ベンチャー企業のIPO経験またはIPO準備支援経験</li><li><span class='tag tag-must'>MUST</span> 管理部門全体の構築・統括経験</li><li><span class='tag tag-must'>MUST</span> コーポレート戦略の立案・実行経験</li></ul><p><strong>求める人物像：</strong></p><ul><li>コーチャブルでベンチャーカルチャーに適応できるマインドをお持ちの方</li><li>年下や気の強い若手とも協働できるコミュニケーション能力</li><li>24時間働く気概があり、迅速な意思決定ができる</li><li>ベンチャーのスピード感に対応できる適応力</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">⚠️ 副業条件によって可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://sushiai.jp" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k4"><div class="card-inner">
+  <div class="badges"><span class="badge">CFO／ファイナンス責任者</span><span class="badge badge-blue">未上場/N-4以前</span></div>
+  <div class="co-name">株式会社キノシタ林業</div>
+  <div class="co-url"><a href="https://kinorin.jp/index.html" target="_blank">https://kinorin.jp/index.html</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>宮崎県宮崎市江平西1-2-28 第四丸三ビル2F</td></tr><tr><th>東京支店</th><td>東京都港区赤坂4-2-19 赤坂SHASTA・EAST5F</td></tr><tr><th>設立</th><td>2020年</td></tr><tr><th>従業員数</th><td>100名超</td></tr><tr><th>上場区分</th><td>未上場/N-4以前</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>設立からわずか5年で従業員数は100名を超え、今期は営業利益約10億円を見込む順調な成長</li><li>2030年のIPOを現実的な目標として推進</li><li>遊休地の買収から発電設備の設置・運用まで一貫して行うモデルで地域資源の活用と事業拡大を同時に実現</li><li>現在7拠点を構え、今後も拠点拡大を予定</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2020年に設立され、山林業と再生可能エネルギー(太陽光・バイオマス)事業を手がける企業です。現在、再エネ市場の拡大とともに急成長しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2020年に設立され、山林業と再生可能エネルギー(太陽光・バイオマス)事業を手がける企業です。現在、再エネ市場の拡大とともに急成長しています。遊休地の買収から発電設備の設置・運用まで一貫して行うモデルにより、地域資源の活用と事業拡大を同時に実現しています。現在は7拠点を構え、今後も拠点拡大を予定しています。</p><p>&quot;山を仕事に&quot;&quot;地域の未来をつくる&quot;をコンセプトに掲げ、持続可能な山林活用と地方創生を両立する事業モデルで注目を集めています。</p><p>現在の高い収益性を支えているのが蓄電池事業です。また、今後は単なる権利売却だけでなく、建設後も権利の一部を保有することで、長期的なマネジメント領域へ事業を広げていく方針です。さらに、企業向け電力小売(2B)にも参入し、従来の開発中心の体制から、運用・マネジメントを含む&quot;長期視点の事業&quot;へと領域を広げています。</p><p>設立からわずか5年で従業員数は100名を超え、今期は営業利益約10億円を見込むなど順調に成長。これらの実績を背景に、2030年のIPOを現実的な目標として推進しています。</p><p><strong>代表取締役　木下友宏氏</strong><br>明治大学では大学から始めたトライアスロンで日本選手権6位入賞という異例の成果を収めるアスリート気質。卒業後は株式会社キーエンスに入社。営業職を経て、本社勤務では創業者・滝崎武光氏の指導を受ける。入社10年目で独立し、太陽光発電事業を手がける「株式会社バローズ」を創業。約7年間で同社を成長させ、最終的には上場企業へのM&Aを実現しています。<br>バローズの後も飲食事業など複数の事業を手がけ、現在も赤坂でレストランバーのオーナーを務めるなど、多角的な経営活動を展開。2020年に株式会社キノシタ林業を設立。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 CFO／ファイナンス責任者</div>
+          <div class="job-preview">プロジェクトファイナンスの組成やストラクチャー構築を担当</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>業務内容：</strong></p><ul><li>ノンリコースローン、プロジェクトファイナンスの組成経験</li><li>リース会社(オリックス、三井住友ファイナンス＆リース等)やインフラファンド、金融機関での実務経験</li><li>案件単位でのストラクチャー構築および金融機関との交渉経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span><span class="pill">⚠️ 副業条件によって可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://kinorin.jp/index.html" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k5"><div class="card-inner">
+  <div class="badges"><span class="badge">CFO</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社東京PM不動産(トウキョウピーエムフドウサン)</div>
+  <div class="co-url"><a href="https://tokyo-pmre.com/" target="_blank">https://tokyo-pmre.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都江東区三好2丁目17-11</td></tr><tr><th>設立</th><td>2013年</td></tr><tr><th>従業員数</th><td>正社員20名規模</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>全国650店舗のピタットハウスFC内でトップ1-2％の優秀・最優秀店舗賞を5年連続受賞</li><li>2024年には中古マンション買取再販事業に参入し、城東エリアでのマンション販売戸数97戸、事業売上高43億円を見込む</li><li>管理から売買・開発へつなげる循環型モデルがあり、単発仲介ではなく長期的な顧客接点を持てる点が強み</li><li>キーマンの定着率が高く、平均年齢約33歳、正社員20名規模の若い組織で、事業も組織もこれから大きくしていくフェーズ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2013年に創業した同社は、地域密着型の不動産会社として江東区清澄白河エリアで着実に成長を遂げてきた実績企業です。岩元弘志社長が一人でスタートした会社は、今や全国650店舗のピタットハウスFC内でトップ1-2％の優秀・最優秀店舗賞を5年連続受賞するまでに発展。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2013年に創業した同社は、地域密着型の不動産会社として江東区清澄白河エリアで着実に成長を遂げてきた実績企業です。岩元弘志社長が一人でスタートした会社は、今や全国650店舗のピタットハウスFC内でトップ1-2％の優秀・最優秀店舗賞を5年連続受賞するまでに発展。2024年には新たに中古マンション買取再販事業に参入し、城東エリアでのマンション販売戸数97戸、事業売上高43億円を見込むなど、さらなる飛躍を遂げています。</p><p>同社の最大の魅力は&quot;ALL WIN&quot;の経営方針にあります。お客様の資産利益最大化への柔軟対応、人材育成と業務効率の重視、そして信頼関係を築く誠実な企業運営という3つの柱で、関わる全ての人に価値を提供し続けています。都内約2万5000社の不動産業者の中で業務効率を追求し、得た利益を社員の福利厚生に還元する好循環を生み出しています。</p><p>働く環境も抜群で、社員一人ひとりの可能性を見出し、個々の強みを最大限発揮できる環境を整備。&quot;何か&quot;を見つけられずにいる人材を積極的に受け入れ、富裕層向け提案によるレベルの高い接客スキルが身につく成長機会も豊富です。海外事業部の立ち上げやAI教育の導入など、常に新しい取り組みに挑戦する革新性も同社ならではの魅力です。</p><p><strong>代表取締役 岩元弘志氏</strong><br>サラリーマン時代に不動産売買仲介で豊富な経験を積んだ後、2013年に独立して同社を創業。前職もピタットハウス店舗での勤務経験があり、フランチャイズの持つブランド力と知名度の重要性を熟知している実践派の経営者です。一人での創業から始まり、現在の成功企業へと育て上げた手腕は業界内でも高く評価されており、地域密着と効率経営を両立させる独自の経営哲学で、着実な成長を続けています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 CFO</div>
+          <div class="job-preview">経営の右腕として財務戦略から組織マネジメントまで統括</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>株式会社東京PM不動産は、地域密着の不動産会社から総合不動産企業への進化を目指し、賃貸仲介・売買仲介・管理・買取再販・開発までを展開しています。<br>現在、事業成長のスピードが非常に速く、今後のさらなる拡大に向けて、経営・財務の基盤をアップデートするフェーズに入っています。<br>一方で、経営の中核を担うのは現在、岩元社長と専務の実質2名体制であり、財務戦略・金融機関対応・本社機能強化・将来のIPOやM&Aを見据えた経営基盤づくりを担うCFO候補を新設で募集することになりました。</p><p><strong>【ミッション】</strong></p><p><strong>■経営の右腕(Navigator)</strong><br>社長・専務の情熱とアイデアを、冷徹な&quot;数字とロジック&quot;に変換し、経営陣の考えを揃える役割。</p><p><strong>■100億の器の設計者(Architect)</strong><br>財務戦略、管理会計の導入、銀行への圧倒的な説得力を持つ事業計画の策定。</p><p><strong>■推進のエンジン(Engine)</strong><br>分社化、M&A、資金繰りの最適化など、未来の仕組みづくりを社長に代わって完遂する実行責任者。</p><p><strong>【業務内容】</strong></p><ul><li>金融機関対応の高度化(特にメガバンクとの折衝業務)</li><li>財務戦略の立案と実行</li><li>事業計画の策定、予実の見える化</li><li>管理会計の導入、経営判断の仕組み化</li><li>資金調達、借入戦略の最適化</li><li>本社機能の強化(経理財務、人事総務などの立ち上げ・整備支援)</li><li>M&Aの推進</li><li>IPOを見据えた経営管理体制の土台づくり</li></ul><p><strong>必須要件：</strong></p><ul><li><span class='tag tag-must'>MUST</span> 大手金融機関対応、資金調達、財務戦略の実務経験をお持ちの方</li><li><span class='tag tag-must'>MUST</span> 経営層と近い距離で、経営計画や事業計画に関与してきた方</li><li><span class='tag tag-must'>MUST</span> 数字とロジックで経営判断を支援できる方</li></ul><p><strong>歓迎要件：</strong></p><ul><li><span class='tag tag-want'>WANT</span> 事業成長フェーズにある企業で、仕組みづくりや管理体制整備に関わった経験のある方</li><li><span class='tag tag-want'>WANT</span> 不動産業界での財務、経営企画、事業管理経験</li><li><span class='tag tag-want'>WANT</span> M&A知識・実務経験</li><li><span class='tag tag-want'>WANT</span> IPO準備経験</li><li><span class='tag tag-want'>WANT</span> 本社機能(経理財務、人事総務など)の立ち上げ経験</li></ul><p><strong>求める人物像：</strong></p><ul><li>現場理解と経営視点の両方を持ち、攻めと守りのバランスを取れる方</li><li>自ら課題を見つけ、実行までやり切れる方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://tokyo-pmre.com/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが藤岡慎也 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
